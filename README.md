@@ -1,44 +1,170 @@
-# Vim Context-Aware Actions Cheat Sheet
+# 📝 Vim Full Cheat Sheet
 
-## Basic Modes
+## 🧭 Modes
+- `i` — Insert before cursor
+- `I` — Insert at beginning of line
+- `a` — Append after cursor
+- `A` — Append at end of line
+- `o` — Open line below
+- `O` — Open line above
+- `Esc` — Return to Normal mode
+- `v` — Visual mode (characterwise)
+- `V` — Visual Line mode
+- `Ctrl+v` — Visual Block mode
+- `:` — Command-line mode
 
-- `i`, `I` — Enter insert mode (insert at cursor / beginning of line)
+---
 
-## Cursor Movement
+## 🎯 Cursor Movement
+### Line & File
+- `h`, `j`, `k`, `l` — Left, down, up, right
+- `0` — Start of line
+- `^` — First non-blank of line
+- `$` — End of line
+- `gg` — Start of file
+- `G` — End of file
+- `:n` — Go to line `n`
 
-- `h`, `j`, `k`, `l` — Move left, down, up, right
-- `w` — Move to the beginning of the next word
-- `b` — Move to the beginning of the previous word
-- `e` — Move to the end of the current/next word
-- `ge` — Move to the end of the previous word
-- `[n][movement]` — Repeat movement `n` times (e.g., `3w` moves 3 words forward)
-- `f<char>` — Move to next occurrence of `<char>` in line
-- `F<char>` — Move to previous occurrence of `<char>` in line
-- `;`, `,` — Repeat last `f` or `F` (forward / backward)
-- `0` — Move to beginning of the line
-- `$` — Move to end of the line
-- `%` — Go to matching parenthesis, bracket, or brace
-- `gg` — Go to the beginning of the file
-- `G` — Go to the end of the file
+### Words
+- `w` — Start of next word
+- `W` — Next word (by whitespace)
+- `b` — Start of previous word
+- `B` — Previous word (by whitespace)
+- `e` — End of current/next word
+- `E` — End of word (by whitespace)
 
-## Editing Text
+### Search
+- `/text` — Search forward
+- `?text` — Search backward
+- `n` — Repeat search forward
+- `N` — Repeat search backward
 
-- `x`, `X` — Delete character under (x) / before (X) the cursor
-- `a`, `A` — Append after cursor / end of line
-- `o`, `O` — Open new line below / above and enter insert mode
-- `d[movement]` — Delete text covered by movement (e.g., `dw` deletes to next word)
-- `D` — Delete to end of the line
-- `r<char>` — Replace character under cursor with `<char>`
-- `ci[movement]` — Change inside specified movement (e.g., `ci"` changes inside quotes)
-- `S` — Delete line and enter insert mode
+### Find Character
+- `f<char>` — Find next `<char>` on line
+- `F<char>` — Find previous `<char>`
+- `t<char>` — To before next `<char>`
+- `T<char>` — To before previous `<char>`
+- `;` — Repeat last `f`, `t`, `F`, or `T`
+- `,` — Reverse repeat
 
-## Copy and Paste
+---
 
-- `yy` — Yank (copy) current line
-- `p` — Paste yanked text after the cursor
+## ✂️ Editing
+- `x` — Delete character under cursor
+- `X` — Delete before cursor
+- `r<char>` — Replace character
+- `u` — Undo
+- `Ctrl+r` — Redo
+- `.` — Repeat last change
 
-## Searching
+### Delete (with motions)
+- `d{motion}` — Delete (e.g. `dw`, `d$`)
+- `dd` — Delete line
+- `D` — Delete to end of line
 
-- `/yourtext` — Search for “yourtext”
-  - `n` — Repeat search forward
-  - `N` — Repeat search backward
+### Change
+- `c{motion}` — Change (e.g. `cw`, `c$`)
+- `cc` — Change whole line
+- `C` — Change to end of line
+- `S` — Change whole line (`cc`)
+- `ci"` — Change inside quotes (replace `" "` content)
+- `ca"` — Change around quotes (replace including `" "`)
+
+### Copy & Paste
+- `yy` — Yank (copy) line
+- `y{motion}` — Yank motion
+- `p` — Paste after cursor
+- `P` — Paste before cursor
+
+---
+
+## 🔁 Repeating & Counts
+- `{n}` before command — Repeat command `n` times (e.g. `3dw`)
+- `.` — Repeat last command
+- `@a` — Run macro `a`
+- `@@` — Repeat last macro
+
+---
+
+## 🗃️ Buffers, Tabs, and Windows
+### Buffers
+- `:e filename` — Edit file
+- `:bnext` / `:bn` — Next buffer
+- `:bprev` / `:bp` — Previous buffer
+- `:ls` or `:buffers` — List buffers
+- `:bd` — Delete buffer
+
+### Tabs
+- `:tabnew filename` — Open in new tab
+- `gt` — Next tab
+- `gT` — Previous tab
+- `:tabclose` — Close tab
+
+### Windows (Splits)
+- `:split filename` — Horizontal split
+- `:vsplit filename` — Vertical split
+- `Ctrl+w s` — Split current window horizontally
+- `Ctrl+w v` — Split current window vertically
+- `Ctrl+w w` — Switch window
+- `Ctrl+w h/j/k/l` — Move between splits
+- `Ctrl+w q` — Close current split
+
+---
+
+## 🔍 Search & Replace
+- `:%s/old/new/g` — Replace all in file
+- `:s/old/new/g` — Replace all in current line
+- `:%s/old/new/gc` — Replace with confirmation
+- `:noh` — Turn off highlight
+
+---
+
+## 🧠 Macros
+- `q{a-z}` — Start recording into register
+- Perform commands
+- `q` — Stop recording
+- `@a` — Play macro `a`
+- `@@` — Repeat last macro
+
+---
+
+## 🔐 Registers
+- `"ayy` — Yank line into register `a`
+- `"ap` — Paste from register `a`
+- `:reg` — Show registers
+
+---
+
+## 🛠️ Misc
+- `:w` — Save
+- `:q` — Quit
+- `:wq` or `ZZ` — Save and quit
+- `:q!` — Force quit
+- `:x` — Save if changed and quit
+- `:!cmd` — Run shell command
+- `:set number` — Show line numbers
+- `:set relativenumber` — Relative line numbers
+
+---
+
+## 🏁 Useful Command Combos
+- `ci"` — Change content inside quotes
+- `di(` — Delete inside parentheses
+- `va{` — Select around curly braces (Visual mode)
+- `:syntax on` — Enable syntax highlighting
+- `:set paste` — Prevent auto-indent on paste
+
+---
+
+## 📚 Help
+- `:help` — Open help
+- `:help keyword` — Help for `keyword`
+- `K` — Open man page for word under cursor
+
+---
+
+## ✅ Best Practices
+- Use `hjkl` for movement
+- Combine operators and motions: `d`, `c`, `y`, etc.
+- Use Visual mode for block selection (`Ctrl+v`)
+- Record macros for repetitive tasks
